@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.syh.demo.java</groupId>
-    <artifactId>java-multithread-demo</artifactId>
+    <artifactId>java-multithreading-demo</artifactId>
     <version>1</version>
 
     <properties>
