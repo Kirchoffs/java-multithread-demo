@@ -62,14 +62,14 @@ public class CountedCompleterDemo {
             propagateCompletion();
         }
 
-        private void addFactorialToResult(BigInteger factorial) {
-            result.getAndAccumulate(factorial, (b1, b2) -> b1.add(b2));
-        }
-
         private void sumFactorials () {
             for (BigInteger i : integerList) {
                 addFactorialToResult(calculateFactorial(i));
             }
+        }
+
+        private void addFactorialToResult(BigInteger factorial) {
+            result.getAndAccumulate(factorial, (b1, b2) -> b1.add(b2));
         }
 
         private BigInteger calculateFactorial(BigInteger i) {
