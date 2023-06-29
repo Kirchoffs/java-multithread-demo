@@ -13,6 +13,21 @@ static <U> CompletableFuture<U>	supplyAsync(Supplier<U> supplier)
 static <U> CompletableFuture<U>	supplyAsync(Supplier<U> supplier, Executor executor)
 ```
 
+### Difference between Runnable and Supplier
+```
+@FunctionalInterface
+public interface Runnable {
+    void run();
+}
+```
+
+```
+@FunctionalInterface
+public interface Supplier<T> {
+    T get();
+}
+```
+
 ## Callback
 All the callback methods provided by CompletableFuture have two async variants:
 ```
