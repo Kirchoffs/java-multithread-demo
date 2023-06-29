@@ -19,7 +19,7 @@ public class CompletableFutureNinethDemo {
             futures.add(CompletableFuture.runAsync(new SleepRunnable(random.nextInt(5) + 1), executorService));
         }
 
-        CompletableFuture.allOf(futures.stream().toArray(CompletableFuture[]::new)).get();
+        CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).get();
         System.out.println("All sleep tasks finished.");
     }
 }
