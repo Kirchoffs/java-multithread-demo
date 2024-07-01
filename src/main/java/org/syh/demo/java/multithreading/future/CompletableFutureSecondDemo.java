@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CompletableFutureSecondDemo {
     public static void main(String[] args) throws Exception {
+        // Run in ForkJoinPool
         CompletableFuture<Void> future = CompletableFuture.runAsync(new Runnable() {
             @Override
             public void run() {
