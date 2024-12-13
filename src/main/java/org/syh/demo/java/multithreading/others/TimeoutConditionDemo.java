@@ -17,12 +17,12 @@ public class TimeoutConditionDemo {
                 long startTime = System.currentTimeMillis();
                 boolean success = condition.await(3, TimeUnit.SECONDS); // It cannot move on until it acquires the lock
                 long endTime = System.currentTimeMillis();
-                System.out.println("Time elapsed: " + (endTime - startTime) / 1000 + "s");
+                System.out.println("Await thread time elapsed: " + (endTime - startTime) / 1000 + "s");
                 if (!success) {
-                    System.out.println("Timeout");
+                    System.out.println("Await thread Timeout");
                 }
             } catch (InterruptedException e) {
-                System.out.println("Interrupted");
+                System.out.println("Await thread interrupted");
             } finally {
                 lock.unlock();
                 System.out.println("Await thread released lock");
@@ -36,7 +36,7 @@ public class TimeoutConditionDemo {
                 TimeUnit.SECONDS.sleep(8);
                 condition.signal();
             } catch (InterruptedException e) {
-                System.out.println("Interrupted");
+                System.out.println("Signal thread interrupted");
             } finally {
                 lock.unlock();
                 System.out.println("Signal thread released lock");
@@ -47,16 +47,14 @@ public class TimeoutConditionDemo {
     public static void main(String[] args) throws InterruptedException {
         ShareData shareData = new ShareData();
 
-        Thread t1 = new Thread(() -> {
+        new Thread(() -> {
             shareData.awaitWithTimeout();
-        });
+        }).start();
 
-        Thread t2 = new Thread(() -> {
-            shareData.signal();
-        });
-
-        t1.start();
         TimeUnit.SECONDS.sleep(1);
-        t2.start();
+
+        new Thread(() -> {
+            shareData.signal();
+        }).start();
     }
 }
