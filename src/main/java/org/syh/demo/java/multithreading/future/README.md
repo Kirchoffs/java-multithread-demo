@@ -38,3 +38,13 @@ All the callback methods provided by CompletableFuture have two async variants:
 ```
 
 These async callback variations help you further parallelize your computations by executing the callback tasks in a separate thread.
+
+## CompletableFuture
+### thenRun & thenAccept & thenApply
+- `thenRun(Runnable runnable)` does not accept the result of the previous stage and passes nothing to the next stage.
+- `thenAccept(Consumer consumer)` accepts the result of the previous stage but does not pass anything to the next stage.
+- `thenApply(Function function)` accepts the result of the previous stage and passes the result to the next stage.
+
+### whenComplete & handle
+- `whenComplete(BiConsumer action)` can handle both the result and the exception.
+- `handle(BiFunction fn)` can handle both the result and the exception and return a new value.
